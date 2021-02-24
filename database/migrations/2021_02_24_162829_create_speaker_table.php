@@ -13,7 +13,7 @@ class CreateSpeakerTable extends Migration
      */
     public function up()
     {
-        Schema::create('speaker', function (Blueprint $table) {
+        Schema::create('speakers', function (Blueprint $table) {
             $table->id();
             $table->string('last_name');
             $table->string('first_name');
