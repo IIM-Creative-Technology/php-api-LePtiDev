@@ -20,7 +20,7 @@ class Student extends Model
         'last_name',
         'age',
         'year',
-
+        'classroom_id'
     ];
 
     /**
@@ -33,8 +33,12 @@ class Student extends Model
         'updated_at',
     ];
 
-
     public function classroom(){
         return $this->belongsTo(Classroom::class);
     }
+
+    public function marks(){
+        return $this->hasMany(Mark::class);
+    }
+
 }
