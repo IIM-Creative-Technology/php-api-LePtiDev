@@ -30,8 +30,11 @@ class Classroom extends Model
         'updated_at',
     ];
 
-
     public function students(){
         return $this->hasMany(Student::class);
+    }
+
+    public function courses(){
+        return $this->hasMany(Course::class);
     }
 }
