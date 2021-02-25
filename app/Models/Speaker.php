@@ -17,7 +17,7 @@ class Speaker extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'year',
+        'year'
     ];
 
     /**
@@ -29,4 +29,8 @@ class Speaker extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function courses(){
+        return $this->hasMany(Course::class);
+    }
 }
