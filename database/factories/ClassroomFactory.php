@@ -23,7 +23,7 @@ class ClassroomFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Classe ' . $this->faker->numberBetween($min = 1, $max = 100),
+            'name' => 'Classe ' . $this->faker->unique()->numberBetween($min = 1, $max = 10),
             'promotion_date' => $this->faker->numberBetween($min = 2020, $max = 2026),
         ];
     }
