@@ -18,5 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
 
+
+/*
+ * Classroom Route
+ */
 Route::get('/classrooms', [\App\Http\Controllers\ClassroomController::class, 'index']);
-Route::get('/classrooms/one/{id}', [\App\Http\Controllers\ClassroomController::class, 'show']);
+Route::get('/classrooms/{id}', [\App\Http\Controllers\ClassroomController::class, 'show']);
+Route::get('/classrooms/students/{id}', [\App\Http\Controllers\ClassroomController::class, 'indexStudents']);
+Route::post('/classrooms', [\App\Http\Controllers\ClassroomController::class, 'create']);
+Route::put('/classrooms', [\App\Http\Controllers\ClassroomController::class, 'update']);
