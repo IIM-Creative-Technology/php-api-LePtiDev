@@ -44,7 +44,7 @@ class ClassroomController extends Controller
         $classroom = new Classroom();
         $input = $request->input();
 
-        if (isset($input["name"]) || isset($input["promotion_date"])){
+        if (!isset($input["name"]) || !isset($input["promotion_date"])){
 
             return response([
                 "error" => 422,
@@ -53,7 +53,7 @@ class ClassroomController extends Controller
 
         }
 
-        elseif(DB::table("classrooms")->where('name', $input["name"])->first()){
+        elseif(DB::table("classrooms")->where('name', "=", $input["name"])->first()){
 
             return response([
                 "error" => 303,
@@ -74,26 +74,27 @@ class ClassroomController extends Controller
     }
 
     public function update(Request $request){
+
         $input = $request->input();
 
         if(Classroom::find($input["id"])){
-
-            $classroom = Classroom::find($input["id"]);
-            $classroom->fill($input)->save();
-
-            return response([
-                "error" => 200,
-                "message" => "Classe bien modifier",
-            ] , 200);
-
-        }
-        elseif(!isset($input["id"]) || !isset($input["name"]) || !isset($input["promotion_date"])){
+            if(!isset($input["id"]) || !isset($input["name"]) || !isset($input["promotion_date"])){
 
             return response([
                 "error" => 422,
                 "message" => "La requette n'est pas bonne",
             ] , 422);
 
+            }
+            else{
+                $classroom = Classroom::find($input["id"]);
+                $classroom->fill($input)->save();
+
+                return response([
+                    "error" => 200,
+                    "message" => "Classe bien modifier",
+                ] , 200);
+            }
         }
         else{
 
@@ -103,6 +104,5 @@ class ClassroomController extends Controller
             ] , 404);
 
         }
-
     }
 }
