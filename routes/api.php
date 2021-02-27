@@ -38,3 +38,11 @@ Route::get('/students/marks/{id}', [\App\Http\Controllers\StudentController::cla
 Route::post('/students', [\App\Http\Controllers\StudentController::class, 'create']);
 Route::put('/students', [\App\Http\Controllers\StudentController::class, 'update']);
 Route::delete('/students/{id}', [\App\Http\Controllers\StudentController::class, 'destroy']);
+
+/*
+ * Speakers Route
+ */
+Route::get('/speakers', [\App\Http\Controllers\SpeakerController::class, 'index']);
+Route::get('/speakers/{id}', [\App\Http\Controllers\SpeakerController::class, 'show']);
+Route::post('/speakers', [\App\Http\Controllers\SpeakerController::class, 'create']);
+Route::put('/speakers/{id}', [\App\Http\Controllers\SpeakerController::class, 'update']);
