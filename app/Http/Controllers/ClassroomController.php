@@ -92,7 +92,7 @@ class ClassroomController extends Controller
 
                 return response([
                     "error" => 200,
-                    "message" => "Classe bien modifier",
+                    "message" => "Classe bien été modifier",
                 ] , 200);
             }
         }

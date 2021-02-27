@@ -63,9 +63,9 @@ class StudentController extends Controller
                     ->first()
                 ){
                     return response([
-                        "error" => 422,
+                        "error" => 303,
                         "message" => "L'étudiant existe déjà",
-                    ] , 422);
+                    ] , 303);
                 }
 
                 else{
@@ -114,7 +114,7 @@ class StudentController extends Controller
 
                     return response([
                         "error" => 200,
-                        "message" => "L'étudiant a bien modifier",
+                        "message" => "L'étudiant a bien été modifier",
                     ] , 200);
                 }
                 else{
