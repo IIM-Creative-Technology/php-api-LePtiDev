@@ -27,3 +27,14 @@ Route::get('/classrooms/{id}', [\App\Http\Controllers\ClassroomController::class
 Route::get('/classrooms/students/{id}', [\App\Http\Controllers\ClassroomController::class, 'indexStudents']);
 Route::post('/classrooms', [\App\Http\Controllers\ClassroomController::class, 'create']);
 Route::put('/classrooms', [\App\Http\Controllers\ClassroomController::class, 'update']);
+
+
+/*
+ * Students Route
+ */
+Route::get('/students', [\App\Http\Controllers\StudentController::class, 'index']);
+Route::get('/students/{id}', [\App\Http\Controllers\StudentController::class, 'show']);
+Route::get('/students/marks/{id}', [\App\Http\Controllers\StudentController::class, 'indexMarks']);
+Route::post('/students', [\App\Http\Controllers\StudentController::class, 'create']);
+Route::put('/students', [\App\Http\Controllers\StudentController::class, 'update']);
+Route::delete('/students/{id}', [\App\Http\Controllers\StudentController::class, 'destroy']);
