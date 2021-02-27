@@ -22,11 +22,13 @@ class CreateMarksTable extends Migration
 
             $table->foreign('student_id')
                 ->references('id')
-                ->on('students');
+                ->on('students')
+                ->onDelete('cascade');
 
             $table->foreign('course_id')
                 ->references('id')
-                ->on('courses');
+                ->on('courses')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
