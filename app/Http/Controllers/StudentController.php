@@ -15,8 +15,8 @@ class StudentController extends Controller
 
     public function indexMarks($id){
         if(Student::find($id)){
-            $classroom = Student::find($id);
-            return $classroom->marks;
+            $student = Student::find($id);
+            return $student->marks;
         }
 
         return response([
