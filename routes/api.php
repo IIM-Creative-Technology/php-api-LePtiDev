@@ -39,10 +39,27 @@ Route::post('/students', [\App\Http\Controllers\StudentController::class, 'creat
 Route::put('/students', [\App\Http\Controllers\StudentController::class, 'update']);
 Route::delete('/students/{id}', [\App\Http\Controllers\StudentController::class, 'destroy']);
 
+
 /*
  * Speakers Route
  */
 Route::get('/speakers', [\App\Http\Controllers\SpeakerController::class, 'index']);
 Route::get('/speakers/{id}', [\App\Http\Controllers\SpeakerController::class, 'show']);
 Route::post('/speakers', [\App\Http\Controllers\SpeakerController::class, 'create']);
-Route::put('/speakers/{id}', [\App\Http\Controllers\SpeakerController::class, 'update']);
+Route::put('/speakers', [\App\Http\Controllers\SpeakerController::class, 'update']);
+
+
+/*
+ * Courses Route
+ */
+Route::get('/courses', [\App\Http\Controllers\CourseController::class, 'index']);
+Route::get('/courses/{id}', [\App\Http\Controllers\CourseController::class, 'show']);
+Route::post('/courses', [\App\Http\Controllers\CourseController::class, 'create']);
+Route::put('/courses', [\App\Http\Controllers\CourseController::class, 'update']);
+
+
+/*
+ * Marks Route
+ */
+Route::get('/marks/students/{id}', [\App\Http\Controllers\MarkController::class, 'show']);
+Route::post('/marks', [\App\Http\Controllers\MarkController::class, 'create']);
