@@ -1,62 +1,221 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Présentation
 
-## About Laravel
+Cette api a été créée dans le cadre d'un cours sur la création de d'une api sur laravel. cela est donc un projet étudiant et aucunement un projet professionnel.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Pour installer le projet vous devez d'abord dans un premier temps le `cloner sur votre machine.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Une fois cette étape faite vous devez lancer cette commande :
 
-## Learning Laravel
+```
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Lors de l'installation composer va installer toutes les dépendances. Vous allez devoir par la suite configurer votre environment.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Vous allez devoir aller dans la fichier `.env` du projet et configurer votre base de donnée
+Il faudra donc par la suite lancer les seeds qui vous permettrons d'obtenir de la data.
+```
+php artisan db:seed
+```
 
-## Laravel Sponsors
+Attention à bien créé la base de donnée avant.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Une fois le projet installer n'oublier de générer la clé JWT dans le ````.env```` grace a la commande :
+```
+php artisan jwt:secret
+```
 
-### Premium Partners
+Une fois toute ces étapes faite vous pouvez commencer utilisé l'api
+## Insomnia
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+Si vous possédez insomnia vous trouverez a la racine du projet un dossier ````Request Schema````
+avec à l'intérieur un json qui vous permet d'importer toutes les requêtes au seins d'insomnia.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Identification
 
-## Code of Conduct
+L'api utilise un système d'identification par JWT. Seul les personnes suivante peuvent se connecter.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Nom               | Email                                 |  Mot de passe    |
+| ------------------|:--------------------------------------|:----------------:|
+| Karine Mousdik    | karine.mousdik@devinci.fr             | karine1234       |
+| Nicolas Rauber    | nicolas.rauber@devinci.fr             | nicolas1234      |
+| Alexis Bougy      | alexis.bougy@devinci.fr               | alexy1234        |
 
-## Security Vulnerabilities
+Pour vous connecter vous devez avant tout obtenir un token jwt afin de faire des requêtes.
+Pour cela vous devez vous rendre sur cette adresse : 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+http://127.0.0.1:8000/api/auth/login
+```
+Vous passez dans le body de la requête votre email et votre mot de passe afin d'obtenir votre token.
 
-## License
+Une fois votre token obtenu vous pouvez faire une requête en vous authentifiant a chaque fois. Pour cela vous devez utiliser un bearer token et y glisser le token obtenu grace a la requête de login.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+__Si vous n'utilisez pas votre token la requête ne fonctionnera pas.__
+
+## Documentation
+
+Pour chaque type de recherche vous trouverez la documentation si dessous. Attention à bien veiller a respecté les code demander sinon l'api vous enverra une erreur.
+
+Voici une liste d'erreur que vous pourrez trouvez: 
+
+- `404` ( L'élément demandé n'a pas été trouvé )
+- `200` ( Tout ce passe bien )
+- `303` ( L'élément existe déjà en base de donnée)
+- `422` ( La requette faite n'est pas bien constitué)
+
+Chaque requête renvoie obligatoirement quelque chose. Elle renvoie le code d'erreur mais aussi le message avec. Vou pourrez donc l'afficher coté client.
+
+Les requêtes doivent être composée exactement comme ci-dessous.
+
+### Classes
+
+
+| Methods     | Action                                 |  Adresse                                           | Params          |
+| ----------- |:---------------------------------------|:--------------------------------------------------:| ---------------:|
+| `GET`       | Liste de toute les classes             | http://127.0.0.1:8000/api/classrooms               |                 |
+| `GET`       | Afficher juste une classe              | http://127.0.0.1:8000/api/classrooms/{id}          | Id de la classe |
+| `GET`       | Liste de toute les etudiant d'un classe| http://127.0.0.1:8000/api/classrooms/students/{id} | Id de la classe |
+| `POST`      | Ajouter une classe                     | http://127.0.0.1:8000/api/classrooms               | Body query      |
+| `PUT`       | Modifier une classe                    | http://127.0.0.1:8000/api/classrooms               | Body query      |
+
+
+#### exemple: Body query POST
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| name             | Classroom 34                           |
+| promotion_date   | 2015                                   |
+
+
+#### exemple: Body query PUT
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| id               | 1                                      |
+| name             | Classroom 34                           |
+| promotion_date   | 2015                                   |
+
+
+
+---
+
+### Cours
+
+
+| Methods     | Action                                 |  Adresse                                           | Params          |
+| ----------- |:---------------------------------------|:--------------------------------------------------:| ---------------:|
+| `GET`       | Liste tout les cours                   | http://127.0.0.1:8000/api/courses                  |                 |
+| `GET`       | Afficher juste un cours                | http://127.0.0.1:8000/api/courses/{id}             | Id du cours     |
+| `POST`      | Ajouter un cours                       | http://127.0.0.1:8000/api/courses                  | Body query      |
+| `PUT`       | Modifier un cours                      | http://127.0.0.1:8000/api/courses                  | Body query      |
+
+#### exemple: Body query POST
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| name             | Classroom 34                           |
+| start            | 0139-11-13 20:30:42                    |
+| end              | 0139-12-13 20:30:42                    |
+| classroom_id     | 1                                      |
+| speaker_id       | 7                                      |
+
+
+#### exemple: Body query PUT
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| id               | 7                                      |
+| name             | Classroom 34                           |
+| start            | 0139-11-13 20:30:42                    |
+| end              | 0139-12-13 20:30:42                    |
+| classroom_id     | 1                                      |
+| speaker_id       | 7                                      |
+
+
+---
+
+### Intervenant
+
+| Methods     | Action                                 |  Adresse                                           | Params              |
+| ----------- |:---------------------------------------|:--------------------------------------------------:| -------------------:|
+| `GET`       | Liste de tous les intervenants         | http://127.0.0.1:8000/api/speakers                 |                     |
+| `GET`       | Afficher juste un intervenants         | http://127.0.0.1:8000/api/speakers/{id}            | Id de l'intervenant |
+| `POST`      | Ajouter un intervenant                 | http://127.0.0.1:8000/api/speakers                 | Body query          |
+| `PUT`       | Modifier un intervenant                | http://127.0.0.1:8000/api/speakers                 | Body query          |
+
+
+#### exemple: Body query POST
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| first_name       | Pierre                                 |
+| last_name        | Grimaud                                |
+| year             | 2017                                   |
+
+
+#### exemple: Body query PUT
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| id               | 2                                      |
+| first_name       | Pierre                                 |
+| last_name        | Grimaud                                |
+| year             | 2016                                   |
+
+
+---
+
+### Notes
+
+| Methods     | Action                                 |  Adresse                                           | Params              |
+| ----------- |:---------------------------------------|:--------------------------------------------------:| -------------------:|
+| `GET`       | Liste toute les notes d'un étudiant    | http://127.0.0.1:8000/api/marks/students/{id}      | Id de l'étudiant    |
+| `POST`      | Ajoute une note                        | http://127.0.0.1:8000/api/marks                    | Body query          |
+
+#### exemple: Body query POST
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| course_id        | 10                                     |
+| student_id       | 2                                      |
+| mark             | 17                                     |
+
+---
+
+### Étudiant
+
+| Methods     | Action                                 |  Adresse                                           | Params              |
+| ----------- |:---------------------------------------|:--------------------------------------------------:| -------------------:|
+| `GET`       | Liste de tous les élèves               | http://127.0.0.1:8000/api/students                 |                     |
+| `GET`       | Afficher juste un élève                | http://127.0.0.1:8000/api/students/{id}            | Id de l'élève       |
+| `GET`       | Afficher les notes de l'élève          | http://127.0.0.1:8000/api/students/marks/{id}      | Id de l'élève       |
+| `POST`      | Ajouter un élève                       | http://127.0.0.1:8000/api/students                 | Body query          |
+| `PUT`       | Modifier un élève                      | http://127.0.0.1:8000/api/students                 | Body query          |
+| `DELETE`    | Supprimer un élève                     | http://127.0.0.1:8000/api/students/{id}            | Id de l'élève       |
+
+#### exemple: Body query POST
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| first_name       | Quentin                                |
+| last_name        | Guerrier                               |
+| age              | 22                                     |
+| year             | 2018                                   |
+| classroom_id     | 2                                      |
+
+
+#### exemple: Body query PUT
+
+| Key              | Value                                  |
+| ---------------- |:---------------------------------------|
+| id               | 2                                      |
+| first_name       | Quentin                                |
+| last_name        | Guerrier                               |
+| age              | 22                                     |
+| year             | 2018                                   |
+| classroom_id     | 2                                      |
