@@ -60,12 +60,24 @@ class CourseController extends Controller
 
         else{
             if(Speaker::find($input["speaker_id"]) && Classroom::find($input["classroom_id"])){
-                $course->fill($input)->save();
 
-                return response([
-                    "error" => 200,
-                    "message" => "Le cours a été ajouté",
-                ] , 200);
+                $start = date_create_from_format('Y-m-d H:i:s', $input["start"]);
+                $end = date_create_from_format('Y-m-d H:i:s', $input["end"]);
+
+                if(date_diff($start, $end)->days > 5){
+                    return response([
+                        "error" => 422,
+                        "message" => "Le cours ne peux pas durée plus de 5 jours",
+                    ] , 422);
+                }
+                else{
+                    $course->fill($input)->save();
+
+                    return response([
+                        "error" => 200,
+                        "message" => "Le cours a été ajouté",
+                    ] , 200);
+                }
             }
             else{
                 return response([
