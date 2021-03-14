@@ -137,6 +137,10 @@ Les requêtes doivent être composée exactement comme ci-dessous.
 | speaker_id       | 7                                      |
 
 
+Attention le formait de la date doit être exactement comme si dessous :
+````Y-m-d H:i:s````. La date ne dois pas dépasser les 5 jours maximum soit 1 semaine de cours. 
+
+
 ---
 
 ### Intervenant
