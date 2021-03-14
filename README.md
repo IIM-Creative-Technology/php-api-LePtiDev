@@ -189,6 +189,10 @@ Attention le formait de la date doit être exactement comme si dessous :
 | student_id       | 2                                      |
 | mark             | 17                                     |
 
+
+Attention la note de l'étudiant doit se trouver entre 0 et 20 sinon l'api vous renverra une erreur.
+
+
 ---
 
 ### Étudiant
